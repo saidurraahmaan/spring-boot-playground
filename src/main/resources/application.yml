@@ -1,0 +1,57 @@
+app.defaultLanguage: english
+spring:
+    profiles.active: dev
+    data:
+        jpa:
+            repositories:
+                bootstrap-mode: default
+    datasource:
+        #platform: h2
+        #driverClassName: org.h2.Driver
+        #password: password
+        #url: jdbc:h2:file:e:\path\to\a\db.h2.file
+        #url: jdbc:h2:mem:testdb
+        #username: sa
+        driverClassName: org.postgresql.Driver
+        password: to_be_set
+        url: jdbc:postgresql://<to-be-set>/dshe_dms
+        username: to_be_set
+    jpa:
+        #database-platform: org.hibernate.dialect.H2Dialect
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        defer-datasource-initialization: false
+        show-sql: true
+        # generate-ddl: true #(in case not using hibernate ddl-auto)
+        properties:
+            hibernate:
+                #dialect: org.hibernate.dialect.H2Dialect
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                generate-statistics: true
+                format_sql: true
+                session.events.log.LOG_QUERIES_SLOWER_THAN_MS: 10
+        hibernate:
+            ddl-auto: none
+
+    # ---------------------------------------------------
+    # Init & Seeding via Spring
+    # default schema file should be in resource-folder named schema.sql
+    # default seed file should be in resource-folder named data.sql
+    # It gets loaded before hibernate context is ready.
+    # So spring.jpa.defer-datasource-initialization should be 'true'
+    # If liquibase is used, then there will be a circular dependency and spring.jpa.defer-datasource-initialization should be 'false'
+    #
+    sql:
+        init.mode: never
+    # ---------------------------------------------------
+    h2:
+        console.enabled: true
+    liquibase:
+        change-log: classpath:/db/changelog/changelog-master.xml
+        enabled: true
+    security:
+        user:
+            name: admin
+            password: admin
+
+# spring.session.timeout: 15m
+# Fallback if spring.session.timeout is not specified-> server.servlet.session.timeout: 15m

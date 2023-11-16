@@ -1,0 +1,253 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-1">
+        <createTable tableName="education_institute_visit_plan">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="education_institute_visit_planPK"/>
+            </column>
+            <column name="plan_year" type="VARCHAR(255)"/>
+            <column name="status" type="SMALLINT"/>
+            <column name="submission_deadline" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="created_by" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-2">
+        <createTable tableName="educational_institute">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="educational_institutePK"/>
+            </column>
+            <column name="eiin" type="VARCHAR(255)"/>
+            <column name="isas_category" type="VARCHAR(255)"/>
+            <column name="name_bn" type="VARCHAR(255)"/>
+            <column name="name_en" type="VARCHAR(255)"/>
+            <column name="number_of_buildings" type="INTEGER"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-3">
+        <createTable tableName="educational_institute_geo_data">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="educational_institute_geo_dataPK"/>
+            </column>
+            <column name="building_number" type="VARCHAR(255)"/>
+            <column name="latitude" type="FLOAT(53)"/>
+            <column name="longitude" type="FLOAT(53)"/>
+            <column name="educational_institute_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-4">
+        <createTable tableName="institute_visit_calendar">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="institute_visit_calendarPK"/>
+            </column>
+            <column name="approved_or_rejected_on" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="submitted_on" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="visit_plan_id" type="BIGINT"/>
+            <column name="office_id" type="BIGINT"/>
+            <column name="officer_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-5">
+        <createTable tableName="jurisdictionwise_user_role">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jurisdictionwise_user_rolePK"/>
+            </column>
+            <column name="is_primary" type="BOOLEAN"/>
+            <column name="jurisdiction_location_path" type="VARCHAR(255)"/>
+            <column name="permission_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-6">
+        <createTable tableName="location">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="locationPK"/>
+            </column>
+            <column name="bbs_code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name_bn" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name_en" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="path" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-7">
+        <createTable tableName="office">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="officePK"/>
+            </column>
+            <column name="name_bn" type="VARCHAR(255)"/>
+            <column name="name_en" type="VARCHAR(255)"/>
+            <column name="stuff_count" type="INTEGER"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-8">
+        <createTable tableName="officer">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="officerPK"/>
+            </column>
+            <column name="index_number" type="VARCHAR(255)"/>
+            <column name="is_mpo" type="BOOLEAN"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="type" type="SMALLINT"/>
+            <column name="office_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-9">
+        <createTable tableName="role">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="rolePK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-10">
+        <createTable tableName="role_permission">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_permissionPK"/>
+            </column>
+            <column name="permission_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-11">
+        <createTable tableName="teacher">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="teacherPK"/>
+            </column>
+            <column name="index_number" type="VARCHAR(255)"/>
+            <column name="is_mpo" type="BOOLEAN"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="type" type="SMALLINT"/>
+            <column name="educational_institution_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-12">
+        <createTable tableName="user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="userPK"/>
+            </column>
+            <column name="date_of_birth" type="date"/>
+            <column name="designation_bn" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="designation_en" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_synced_on" type="date"/>
+            <column name="name_bn" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name_en" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-13">
+        <createTable tableName="visit_calendar_detail">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="visit_calendar_detailPK"/>
+            </column>
+            <column name="date" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="educational_institution_id" type="BIGINT"/>
+            <column name="visit_calender_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-14">
+        <addUniqueConstraint columnNames="educational_institute_id" constraintName="UC_EDUCATIONAL_INSTITUTE_GEO_DATAEDUCATIONAL_INSTITUTE_ID_COL" tableName="educational_institute_geo_data"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-15">
+        <addUniqueConstraint columnNames="user_id" constraintName="UC_OFFICERUSER_ID_COL" tableName="officer"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-16">
+        <addUniqueConstraint columnNames="user_id" constraintName="UC_TEACHERUSER_ID_COL" tableName="teacher"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-17">
+        <addUniqueConstraint columnNames="visit_calender_id" constraintName="UC_VISIT_CALENDAR_DETAILVISIT_CALENDER_ID_COL" tableName="visit_calendar_detail"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-18">
+        <addForeignKeyConstraint baseColumnNames="location_id" baseTableName="educational_institute" constraintName="FK1ro2b8l87vf6kpsptvgqjenhm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="location" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-19">
+        <addForeignKeyConstraint baseColumnNames="created_by" baseTableName="education_institute_visit_plan" constraintName="FK5fnkwgsc5t1nuamd7vve6awpc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-20">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="officer" constraintName="FK6a5dkesq0pjpod5lohpf8jya4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-21">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_permission" constraintName="FKa6jx8n8xkesmjmv6jqug6bg68" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-22">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="jurisdictionwise_user_role" constraintName="FKauk3h2k5k6n4ufasegpmqoo4d" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-23">
+        <addForeignKeyConstraint baseColumnNames="office_id" baseTableName="institute_visit_calendar" constraintName="FKbrb48duv2vmoysc9252eqeq2q" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="office" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-24">
+        <addForeignKeyConstraint baseColumnNames="office_id" baseTableName="officer" constraintName="FKfsmh3yl0tijcxf3p5fwpjoie8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="office" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-25">
+        <addForeignKeyConstraint baseColumnNames="educational_institute_id" baseTableName="educational_institute_geo_data" constraintName="FKk2dhvctedin45tfjiqieien41" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="location" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-26">
+        <addForeignKeyConstraint baseColumnNames="educational_institution_id" baseTableName="teacher" constraintName="FKk6yfgk3f499m972oe640n3xbk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="educational_institute" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-27">
+        <addForeignKeyConstraint baseColumnNames="location_id" baseTableName="office" constraintName="FKl4jtpset1wyh5cmjdi1mm7m4e" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="location" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-28">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="location" constraintName="FKm5xl34yboc8re75qsac6svt6g" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="location" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-29">
+        <addForeignKeyConstraint baseColumnNames="visit_calender_id" baseTableName="visit_calendar_detail" constraintName="FKolmepglui1ltyl6e24frskaii" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="institute_visit_calendar" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-30">
+        <addForeignKeyConstraint baseColumnNames="officer_id" baseTableName="institute_visit_calendar" constraintName="FKoy7q01c5nb0cm1l5juqljfk25" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="officer" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-31">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="teacher" constraintName="FKpb6g6pahj1mr2ijg92r7m1xlh" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-32">
+        <addForeignKeyConstraint baseColumnNames="educational_institution_id" baseTableName="visit_calendar_detail" constraintName="FKr511thwb9ud8kxra8fkbdn56c" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="educational_institute" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-33">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jurisdictionwise_user_role" constraintName="FKsh2hehh259yb6lr8vpwid2989" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-34">
+        <addForeignKeyConstraint baseColumnNames="visit_plan_id" baseTableName="institute_visit_calendar" constraintName="FKtmsrxcwkk0xpmmxc4ul5rvn2x" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="education_institute_visit_plan" validate="true"/>
+    </changeSet>
+    <changeSet author="Saidur (generated)" id="2023-11-12_18.44.21-35">
+        <dropTable tableName="users"/>
+    </changeSet>
+</databaseChangeLog>
